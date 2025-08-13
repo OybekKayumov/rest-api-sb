@@ -1,5 +1,6 @@
 package com.codewithmosh.store.controllers;
 
+import com.codewithmosh.store.dtos.UserDto;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -31,9 +32,13 @@ public class UserController {
   //@GetMapping("/users")
   @GetMapping
   //public List<User> getAllUsers() {
-  public Iterable<User> getAllUsers() {
+  //public Iterable<User> getAllUsers() {
+  public Iterable<UserDto> getAllUsers() {
 
-    return userRepository.findAll();
+    return userRepository.findAll()
+            .stream()
+            .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail()))
+            .toList();
   }
 
   //@GetMapping("/users/{id}")

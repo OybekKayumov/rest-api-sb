@@ -44,7 +44,7 @@ public class UserController {
   //@GetMapping("/users/{id}")
   @GetMapping("/{id}")
   //public User getUser(@PathVariable Long id) {
-  public ResponseEntity<User> getUser(@PathVariable Long id) {
+  public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
 
     var user = userRepository.findById(id).orElse(null);
 
@@ -52,8 +52,9 @@ public class UserController {
       //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       ResponseEntity.notFound().build();
     }
+    var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
 
     //return new ResponseEntity<>(user, HttpStatus.OK);
-    return ResponseEntity.ok(user);
+    return ResponseEntity.ok(userDto);
   }
 }

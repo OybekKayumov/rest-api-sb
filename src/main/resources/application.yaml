@@ -2,8 +2,10 @@ spring:
   application:
     name: store
   datasource:
-    url: jdbc:mysql://localhost:3306/store_api?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3307/pupil_info
     username: root
-    password: MyPassword!
+    password: testtest
   jpa:
     show-sql: true
+  flyway:
+    schemas=pupil_info:

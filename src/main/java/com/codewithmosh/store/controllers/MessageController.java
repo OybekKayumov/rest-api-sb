@@ -14,8 +14,8 @@ public class MessageController {
   }
 
   //* return JSON object
-  @RequestMapping("/hello")
-  public Message sayHello2() {
-    return new Message("Hello World!");
-  }
+//  @RequestMapping("/hello")
+//  public Message sayHello2() {
+//    return new Message("Hello World!");
+//  }
 }

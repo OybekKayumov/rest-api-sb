@@ -35,12 +35,12 @@ public class UserController {
   //public List<User> getAllUsers() {
   //public Iterable<User> getAllUsers() {
   public Iterable<UserDto> getAllUsers(
-          @RequestParam(required = false, defaultValue = "") String sort) {
+          @RequestParam(required = false, defaultValue = "", name = "sort") String sortBy) {
 
-    if (!Set.of("name", "email").contains(sort))
-      sort = "name";
+    if (!Set.of("name", "email").contains(sortBy))
+      sortBy = "name";
 
-    return userRepository.findAll(Sort.by(sort))
+    return userRepository.findAll(Sort.by(sortBy))
             .stream()
             //.map(user -> new UserDto(user.getId(), user.getName(),
             //user.getEmail()))

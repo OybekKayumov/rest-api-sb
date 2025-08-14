@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -33,7 +34,11 @@ public class UserController {
   @GetMapping
   //public List<User> getAllUsers() {
   //public Iterable<User> getAllUsers() {
-  public Iterable<UserDto> getAllUsers(@RequestParam String sort) {
+  public Iterable<UserDto> getAllUsers(
+          @RequestParam(required = false, defaultValue = "") String sort) {
+
+    if (!Set.of("name", "email").contains(sort))
+      sort = "name";
 
     return userRepository.findAll(Sort.by(sort))
             .stream()

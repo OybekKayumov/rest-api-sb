@@ -35,8 +35,8 @@ public class UserController {
   //public List<User> getAllUsers() {
   //public Iterable<User> getAllUsers() {
   public Iterable<UserDto> getAllUsers(
-          //! add auth Token in postman to header
-          @RequestHeader(name = "x-auth-token") String authToken,
+          //! add auth Token in postman to header, optional
+          @RequestHeader(required = false, name = "x-auth-token") String authToken,
           @RequestParam(required = false, defaultValue = "", name = "sort") String sortBy) {
 
     //* print auth token

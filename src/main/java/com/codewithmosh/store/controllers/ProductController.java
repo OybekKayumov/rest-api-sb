@@ -35,6 +35,7 @@ public class ProductController {
       products = productRepository.findByCategoryId(categoryId);
     } else {
       //products = productRepository.findAll();
+      //* improve sql queries
       products = productRepository.findAllWithCategory();
     }
 //    return productRepository.findAll().stream()

@@ -126,7 +126,7 @@ public class UserController {
 
 	@PostMapping("/{id}/change-password")
 	public ResponseEntity<Void> changePassword(
-					@RequestBody Long id,
+					@PathVariable Long id,
 					@RequestBody ChangePasswordRequest request) {
 
 		var user = userRepository.findById(id).orElse(null);

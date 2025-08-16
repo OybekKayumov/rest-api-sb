@@ -8,4 +8,9 @@ spring:
   jpa:
     show-sql: true
   flyway:
-    schemas=pupil_info:
+    enabled: true
+    schemas: pupil_info
+    default-schema: pupil_info
+    baseline-on-migrate: true
+    baseline-version: 1
+    locations: classpath:db/migration

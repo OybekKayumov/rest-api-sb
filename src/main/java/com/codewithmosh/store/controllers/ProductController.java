@@ -20,8 +20,9 @@ public class ProductController {
   private final ProductRepository productRepository;
   private final ProductMapper productMapper;
 
-//  public ProductController(ProductRepository productRepository) {
+//  public ProductController(ProductRepository productRepository, ProductMapper productMapper) {
 //    this.productRepository = productRepository;
+//	  this.productMapper = productMapper;
 //  }
 
   @GetMapping

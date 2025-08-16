@@ -13,11 +13,14 @@ import java.time.LocalDateTime;
 @Getter
 public class UserDto {
 
-  @JsonIgnore  //! exclude a field from JSON Object
-  @JsonProperty("user_id") //! id -> "user_id"
+  //@JsonIgnore  //! exclude a field from JSON Object
+  //@JsonProperty("user_id") //! id -> "user_id"
   private Long id;
   private String name;
   private String email;
+
+	@JsonIgnore
+	private String password;
 
 //  @JsonInclude(JsonInclude.Include.NON_NULL)
 //  private String phoneNumber;

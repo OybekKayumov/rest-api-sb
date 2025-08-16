@@ -77,14 +77,34 @@ public class ProductController {
 					@PathVariable Long id,
 					@RequestBody ProductDto productDto) {
 
+		var category =
+						categoryRepository.findById(productDto.getCategoryId()).orElse(null);
+		if (category == null) {
+			return ResponseEntity.badRequest().build();
+		}
+
 		var product = productRepository.findById(id).orElse(null);
 		if (product == null) {
 			return ResponseEntity.notFound().build();
 		}
 
 		productMapper.update(productDto, product);
+		product.setCategory(category);
 		productRepository.save(product);
+		productDto.setId(product.getId());
 
 		return ResponseEntity.ok(productDto);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteProduct(
+					@PathVariable Long id) {
+		var product = productRepository.findById(id).orElse(null);
+		if (product == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		productRepository.delete(product);
+		return ResponseEntity.noContent().build();
 	}
 }

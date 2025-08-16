@@ -5,10 +5,8 @@ import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.mappers.ProductMapper;
 import com.codewithmosh.store.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,4 +45,15 @@ public class ProductController {
             .map(productMapper::toDto)
             .toList();
   }
+
+	@PostMapping
+	public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+
+		var product = productMapper.toEntity(productDto);
+		productRepository.save(product);
+		productDto.setId(product.getId());
+
+		return ResponseEntity.ok(productDto);
+
+	}
 }
